@@ -27,7 +27,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The Pi hub process connects to HiveMQ Cloud, publishes a test telemetry message, and the server receives it (end-to-end MQTT path confirmed)
   3. All Pi connections to external services (HiveMQ, Hostinger) are outbound-only — no ports are opened on the home network
   4. The monorepo builds cleanly across all four packages (shared, hub, server, web) with TypeScript compilation passing
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 01-01: Monorepo scaffold — npm workspaces, TypeScript config, shared MQTT topic constants and payload types
@@ -43,7 +43,7 @@ Plans:
   3. Dashboard shows online/offline status for the Pi hub and each Arduino board, updated via heartbeat within 90 seconds of a disconnect
   4. Opening the dashboard on a second device (phone + laptop) shows identical state, and a control action on one updates the other in real-time
   5. Dashboard loads and shows last-known hardware state even when no hardware is currently online; layout is usable on a phone screen
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 02-01: Hub package — serialport v13 reads Arduino JSON over stable udev symlinks, serial reconnect loop, MQTT telemetry publish and command subscribe, LWT and heartbeat
@@ -59,7 +59,7 @@ Plans:
   2. User can watch a live camera stream on the dashboard sourced from the Pi's webcam or Pi Camera, streamed via HLS through Cloudflare Tunnel with no home network ports opened
   3. User receives a browser notification when motion is detected, and can enable or disable alerts per sensor from the dashboard
   4. User can create, view, edit, and delete scheduled actions (e.g., turn on LEDs at 18:00) that execute reliably on the server
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 03-01: Data persistence and charts — server writes MQTT telemetry to Neon PostgreSQL; REST API for time-range queries; React Chart.js components with 1h/24h/7d selector and real-time updates; 30-day retention policy
