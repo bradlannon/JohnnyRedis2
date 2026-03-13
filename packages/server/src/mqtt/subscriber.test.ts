@@ -4,11 +4,12 @@ import { handleSensorMessage, handleStatusMessage } from './subscriber.js'
 
 describe('MQTT subscriber message handlers', () => {
   let cache: StateCache
-  let mockBroadcast: ReturnType<typeof vi.fn>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockBroadcastSpy: ReturnType<typeof vi.fn<any>>
 
   beforeEach(() => {
     cache = new StateCache()
-    mockBroadcast = vi.fn()
+    mockBroadcastSpy = vi.fn()
   })
 
   describe('handleSensorMessage', () => {
@@ -16,7 +17,7 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/sensor/motion/nano'
       const payload = Buffer.from(JSON.stringify({ device: 'motion', board: 'nano', value: 1, ts: 1000 }))
 
-      handleSensorMessage(topic, payload, cache, mockBroadcast)
+      handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)
 
       const result = cache.getSensor('motion', 'nano')
       expect(result).toEqual({ device: 'motion', board: 'nano', value: 1, ts: 1000 })
@@ -26,10 +27,10 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/sensor/temp/uno'
       const payload = Buffer.from(JSON.stringify({ device: 'temp', board: 'uno', value: 22.5, ts: 2000 }))
 
-      handleSensorMessage(topic, payload, cache, mockBroadcast)
+      handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)
 
-      expect(mockBroadcast).toHaveBeenCalledOnce()
-      expect(mockBroadcast).toHaveBeenCalledWith('sensor:update', {
+      expect(mockBroadcastSpy).toHaveBeenCalledOnce()
+      expect(mockBroadcastSpy).toHaveBeenCalledWith('sensor:update', {
         device: 'temp', board: 'uno', value: 22.5, ts: 2000
       })
     })
@@ -38,8 +39,8 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/sensor/motion/nano'
       const payload = Buffer.from('not-json')
 
-      expect(() => handleSensorMessage(topic, payload, cache, mockBroadcast)).not.toThrow()
-      expect(mockBroadcast).not.toHaveBeenCalled()
+      expect(() => handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)).not.toThrow()
+      expect(mockBroadcastSpy).not.toHaveBeenCalled()
     })
   })
 
@@ -48,7 +49,7 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/status/nano'
       const payload = Buffer.from(JSON.stringify({ online: true, ts: 1000 }))
 
-      handleStatusMessage(topic, payload, cache, mockBroadcast)
+      handleStatusMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)
 
       const snap = cache.snapshot()
       expect(snap.status['nano']).toEqual({ board: 'nano', online: true, ts: 1000 })
@@ -58,10 +59,10 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/status/nano'
       const payload = Buffer.from(JSON.stringify({ online: false, ts: 3000 }))
 
-      handleStatusMessage(topic, payload, cache, mockBroadcast)
+      handleStatusMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)
 
-      expect(mockBroadcast).toHaveBeenCalledOnce()
-      expect(mockBroadcast).toHaveBeenCalledWith('status:update', {
+      expect(mockBroadcastSpy).toHaveBeenCalledOnce()
+      expect(mockBroadcastSpy).toHaveBeenCalledWith('status:update', {
         board: 'nano', online: false, ts: 3000
       })
     })
@@ -70,8 +71,8 @@ describe('MQTT subscriber message handlers', () => {
       const topic = 'home/status/nano'
       const payload = Buffer.from('bad-json')
 
-      expect(() => handleStatusMessage(topic, payload, cache, mockBroadcast)).not.toThrow()
-      expect(mockBroadcast).not.toHaveBeenCalled()
+      expect(() => handleStatusMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)).not.toThrow()
+      expect(mockBroadcastSpy).not.toHaveBeenCalled()
     })
   })
 })

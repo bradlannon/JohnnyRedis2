@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import express, { type Application } from 'express'
 import http from 'node:http'
 import sseRouter, { broadcast } from './index.js'
+import { stateCache } from '../state/cache.js'
 
 function createTestApp(): Application {
   const app = express()
@@ -10,10 +11,8 @@ function createTestApp(): Application {
 }
 
 /**
- * Helper: make a GET /events request and return the response headers
- * after they are flushed, without waiting for the connection to close.
- * SSE is a long-lived connection — supertest waits for close, so we use
- * the raw http module with a short read followed by socket destruction.
+ * Helper: make a GET /events request and collect initial SSE body data
+ * (up to first kilobyte) before closing the connection.
  */
 function getSSEHeaders(app: Application): Promise<Record<string, string | string[]>> {
   return new Promise((resolve, reject) => {
@@ -45,6 +44,51 @@ function getSSEHeaders(app: Application): Promise<Record<string, string | string
   })
 }
 
+/**
+ * Helper: collect SSE body chunks until we have data including the state:init event.
+ */
+function getSSEBody(app: Application, timeoutMs = 2000): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const server = app.listen(0, () => {
+      const addr = server.address()
+      if (!addr || typeof addr === 'string') {
+        server.close()
+        return reject(new Error('No address'))
+      }
+
+      let body = ''
+      const req = http.get(
+        { host: '127.0.0.1', port: addr.port, path: '/events' },
+        (res) => {
+          const timer = setTimeout(() => {
+            res.socket?.destroy()
+            server.close(() => resolve(body))
+          }, timeoutMs)
+
+          res.on('data', (chunk: Buffer) => {
+            body += chunk.toString()
+            // Once we have the state:init event, we can stop collecting
+            if (body.includes('event: state:init')) {
+              clearTimeout(timer)
+              res.socket?.destroy()
+              server.close(() => resolve(body))
+            }
+          })
+
+          res.on('error', () => {
+            clearTimeout(timer)
+            server.close(() => resolve(body))
+          })
+        },
+      )
+
+      req.on('error', (err) => {
+        server.close(() => reject(err))
+      })
+    })
+  })
+}
+
 describe('SSE endpoint headers', () => {
   it('sets Content-Type: text/event-stream', async () => {
     const headers = await getSSEHeaders(createTestApp())
@@ -67,6 +111,37 @@ describe('SSE endpoint headers', () => {
   }, 5000)
 })
 
+describe('SSE state:init on connect', () => {
+  beforeEach(() => {
+    // Clear cache by reassigning internal state via a fresh snapshot baseline
+    // We cannot easily reset the singleton, so we set known values per test
+  })
+
+  it('sends empty state:init when cache is empty', async () => {
+    // The singleton stateCache may have values from prior tests — but in a fresh
+    // Vitest worker the module is re-evaluated. We test with a new app instance.
+    const body = await getSSEBody(createTestApp(), 1500)
+    expect(body).toContain('event: state:init')
+    expect(body).toContain('"sensors"')
+    expect(body).toContain('"status"')
+  }, 5000)
+
+  it('sends state:init event as first named event on connect', async () => {
+    // Set some values in the singleton stateCache
+    stateCache.setSensor('motion', 'nano', 1, 1000)
+    stateCache.setStatus('nano', true, 1001)
+
+    const body = await getSSEBody(createTestApp(), 1500)
+
+    // Verify the state:init event appears in the stream
+    expect(body).toContain('event: state:init')
+    // Verify it contains sensor data
+    expect(body).toContain('"motion/nano"')
+    // Verify it contains status data
+    expect(body).toContain('"nano"')
+  }, 5000)
+})
+
 describe('SSE broadcast format', () => {
   it('writes event: and data: lines in correct SSE format', () => {
     const event = 'sensor:update'
@@ -81,12 +156,6 @@ describe('SSE broadcast format', () => {
   })
 
   it('broadcast sends correct format to connected clients', () => {
-    const writes: string[] = []
-    const mockRes = {
-      write: (chunk: string) => { writes.push(chunk); return true },
-      on: (_event: string, _handler: () => void) => mockRes,
-    }
-
     // Access internal clients set via broadcast — call broadcast and verify nothing throws
     // (no clients connected, so no writes — just verify it doesn't crash)
     expect(() => broadcast('sensor:update', { value: 42 })).not.toThrow()

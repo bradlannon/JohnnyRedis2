@@ -1,4 +1,5 @@
 import { Router, type Request, type Response } from 'express'
+import { stateCache } from '../state/cache.js'
 
 const router = Router()
 const clients = new Set<Response>()
@@ -17,6 +18,10 @@ router.get('/events', (req: Request, res: Response) => {
 
   // Tell client retry interval (10s) as first SSE directive
   res.write('retry: 10000\n\n')
+
+  // Send full cached state immediately on connect (INFRA-04: instant page loads)
+  const snapshot = stateCache.snapshot()
+  res.write(`event: state:init\ndata: ${JSON.stringify(snapshot)}\n\n`)
 
   // Register client
   clients.add(res)

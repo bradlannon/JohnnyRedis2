@@ -1,10 +1,10 @@
-import { describe, it, expect, vi, type MockedFunction } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import express from 'express'
 import request from 'supertest'
 import type { MqttClient } from 'mqtt'
 import createCommandRouter from './command.js'
 
-function createTestApp(mqttClient: Partial<MqttClient>) {
+function createTestApp(mqttClient: unknown) {
   const app = express()
   app.use(express.json())
   app.use(createCommandRouter(mqttClient as MqttClient))
@@ -16,7 +16,7 @@ describe('POST /command', () => {
     const mockPublish = vi.fn((_topic: string, _payload: string, _opts: object, callback?: (err?: Error) => void) => {
       if (callback) callback(undefined)
     })
-    const mockClient = { publish: mockPublish } as Partial<MqttClient>
+    const mockClient = { publish: mockPublish }
     const app = createTestApp(mockClient)
 
     const res = await request(app)
@@ -32,7 +32,7 @@ describe('POST /command', () => {
     const mockPublish = vi.fn((_topic: string, _payload: string, _opts: object, callback?: (err?: Error) => void) => {
       if (callback) callback(undefined)
     })
-    const mockClient = { publish: mockPublish } as Partial<MqttClient>
+    const mockClient = { publish: mockPublish }
     const app = createTestApp(mockClient)
 
     await request(app)
@@ -43,7 +43,7 @@ describe('POST /command', () => {
   })
 
   it('returns 400 when "device" field is missing', async () => {
-    const mockClient = { publish: vi.fn() } as Partial<MqttClient>
+    const mockClient = { publish: vi.fn() }
     const app = createTestApp(mockClient)
 
     const res = await request(app)
@@ -55,7 +55,7 @@ describe('POST /command', () => {
   })
 
   it('returns 400 with empty body', async () => {
-    const mockClient = { publish: vi.fn() } as Partial<MqttClient>
+    const mockClient = { publish: vi.fn() }
     const app = createTestApp(mockClient)
 
     const res = await request(app)
@@ -67,7 +67,7 @@ describe('POST /command', () => {
   })
 
   it('returns 400 with wrong value type', async () => {
-    const mockClient = { publish: vi.fn() } as Partial<MqttClient>
+    const mockClient = { publish: vi.fn() }
     const app = createTestApp(mockClient)
 
     const res = await request(app)
@@ -81,7 +81,7 @@ describe('POST /command', () => {
     const mockPublish = vi.fn((_topic: string, _payload: string, _opts: object, callback?: (err?: Error) => void) => {
       if (callback) callback(new Error('MQTT broker unreachable'))
     })
-    const mockClient = { publish: mockPublish } as Partial<MqttClient>
+    const mockClient = { publish: mockPublish }
     const app = createTestApp(mockClient)
 
     const res = await request(app)

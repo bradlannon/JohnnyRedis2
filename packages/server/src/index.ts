@@ -1,6 +1,8 @@
 import express from 'express'
 import sseRouter from './sse/index.js'
 import { TOPICS } from '@johnnyredis/shared'
+import { connectMqttSubscriber } from './mqtt/subscriber.js'
+import createCommandRouter from './routes/command.js'
 
 const app = express()
 const PORT = process.env['PORT'] ?? 3000
@@ -20,6 +22,12 @@ app.get('/health', (_req, res) => {
 
 // SSE endpoint — server-to-browser real-time push
 app.use(sseRouter)
+
+// Connect MQTT subscriber: updates state cache and broadcasts SSE events
+const mqttClient = connectMqttSubscriber()
+
+// Command route: POST /command validates and publishes to MQTT
+app.use(createCommandRouter(mqttClient))
 
 app.listen(PORT, () => {
   console.log(`JohnnyRedis Server listening on port ${PORT}`)
