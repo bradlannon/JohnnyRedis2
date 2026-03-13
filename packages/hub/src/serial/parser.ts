@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { SensorPayload } from '@johnnyredis/shared'
+import { SensorPayload as SensorPayloadSchema } from '@johnnyredis/shared'
 
 // Arduino sends sensor data WITHOUT ts — device/board/value only
 const ArduinoSensorLine = z.object({
@@ -8,7 +8,7 @@ const ArduinoSensorLine = z.object({
   value:  z.number(),
 })
 
-type SensorPayload = z.infer<typeof SensorPayload>
+type SensorPayload = z.infer<typeof SensorPayloadSchema>
 
 /**
  * Parse a raw serial line from Arduino into a SensorPayload.

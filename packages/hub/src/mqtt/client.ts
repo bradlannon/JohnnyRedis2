@@ -26,6 +26,8 @@ client.on('connect', () => {
     JSON.stringify({ online: true, ts: Date.now() }),
     { qos: 1, retain: RETAIN.status },
   )
+  // Subscribe to all command topics so hub can relay to Arduino serial
+  client.subscribe('home/cmd/#', { qos: 1 })
 })
 
 client.on('reconnect', () => {
