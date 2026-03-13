@@ -43,13 +43,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Camera
 
-- [ ] **CAM-01**: User can view 24/7 camera stream on dashboard (USB webcam or Pi Camera)
-- [ ] **CAM-02**: Camera stream uses HLS via MediaMTX, tunneled through Cloudflare (outbound-only)
+- [x] **CAM-01**: User can view 24/7 camera stream on dashboard (USB webcam or Pi Camera)
+- [x] **CAM-02**: Camera stream uses HLS via MediaMTX, tunneled through Cloudflare (outbound-only)
 
 ### Alerts
 
-- [ ] **ALRT-01**: User receives browser notification when motion is detected
-- [ ] **ALRT-02**: User can enable/disable alert notifications per sensor from dashboard
+- [x] **ALRT-01**: User receives browser notification when motion is detected
+- [x] **ALRT-02**: User can enable/disable alert notifications per sensor from dashboard
 
 ### Scheduling
 
@@ -130,10 +130,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DATA-01 | Phase 3 | Complete |
 | DATA-02 | Phase 3 | Complete |
 | DATA-03 | Phase 3 | Complete |
-| CAM-01 | Phase 3 | Pending |
-| CAM-02 | Phase 3 | Pending |
-| ALRT-01 | Phase 3 | Pending |
-| ALRT-02 | Phase 3 | Pending |
+| CAM-01 | Phase 3 | Complete |
+| CAM-02 | Phase 3 | Complete |
+| ALRT-01 | Phase 3 | Complete |
+| ALRT-02 | Phase 3 | Complete |
 | SCHED-01 | Phase 3 | Complete |
 | SCHED-02 | Phase 3 | Complete |
 

@@ -31,6 +31,7 @@ export const CameraFeed = forwardRef<HTMLVideoElement, CameraFeedProps>(
         return
       }
 
+      const activeSrc: string = src
       setStatus('connecting')
 
       function cleanup() {
@@ -59,7 +60,7 @@ export const CameraFeed = forwardRef<HTMLVideoElement, CameraFeedProps>(
           const hls = new Hls({ liveSyncDurationCount: 3 })
           hlsRef.current = hls
 
-          hls.loadSource(src)
+          hls.loadSource(activeSrc)
           hls.attachMedia(video)
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -79,7 +80,7 @@ export const CameraFeed = forwardRef<HTMLVideoElement, CameraFeedProps>(
           })
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
           // Safari native HLS
-          video.src = src
+          video.src = activeSrc
           const onLoaded = () => {
             setStatus('playing')
             video.play().catch(() => {})

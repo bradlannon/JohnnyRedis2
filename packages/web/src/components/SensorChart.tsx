@@ -115,8 +115,10 @@ export function SensorChart({
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: (ctx) =>
-              aggregated ? `avg: ${ctx.parsed.y.toFixed(1)}` : `${ctx.parsed.y}`,
+            label: (ctx) => {
+              const y = ctx.parsed.y
+              return aggregated ? `avg: ${y != null ? y.toFixed(1) : 'N/A'}` : `${y ?? 'N/A'}`
+            },
           },
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -57,7 +57,7 @@ describe('CameraFeed', () => {
   })
 
   it('includes video element accessible to parent via ref', () => {
-    const ref = { current: null } as React.RefObject<HTMLVideoElement | null>
+    const ref = { current: null } as React.RefObject<HTMLVideoElement>
     render(<CameraFeed ref={ref} src={null} label="Webcam" />)
     // ref.current may be null in offline state (hidden video) but element exists in DOM
     expect(screen.getByLabelText('Webcam')).toBeInTheDocument()

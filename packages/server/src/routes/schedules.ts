@@ -21,6 +21,7 @@ const UpdateScheduleSchema = CreateScheduleSchema.partial()
 export default function createSchedulesRouter(mqttClient: MqttClient): Router {
   const router = Router()
 
+
   // GET /api/schedules — list all scheduled actions
   router.get('/schedules', async (_req: Request, res: Response) => {
     try {
