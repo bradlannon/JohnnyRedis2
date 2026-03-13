@@ -15,7 +15,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Monorepo scaffold, external services wired, SSE validated on Hostinger, Pi hub talking to Arduino over stable serial (completed 2026-03-13)
 - [x] **Phase 2: Core Dashboard** - Real-time actuator control, live sensor display, device status indicators, multi-session sync, responsive layout (completed 2026-03-13)
 - [x] **Phase 3: Data and Enrichment** - Historical sensor charts, 24/7 camera stream, motion alerts, scheduled actions (completed 2026-03-13)
-- [ ] **Phase 4: Gap Closure — Schema Fix and CORS** - Fix CommandPayload.value optionality bug and add CORS preflight handler for production
+- [x] **Phase 4: Gap Closure — Schema Fix and CORS** - Fix CommandPayload.value optionality bug and add CORS preflight handler for production (completed 2026-03-13)
+- [ ] **Phase 5: Cleanup** - Tech debt resolution: dead code removal, type alignment, UI gap fix, documentation, DB migration
 
 ## Phase Details
 
@@ -82,14 +83,33 @@ Plans:
 Plans:
 - [ ] 04-01: Schema fix and CORS — make CommandPayload.value optional, add CORS preflight handler
 
+### Phase 5: Cleanup
+**Goal**: All v1.0 tech debt is resolved — dead code removed, types aligned, UI gaps closed, deployment documentation complete, and production database migrated.
+**Depends on**: Phase 4
+**Requirements**: TECH-DEBT
+**Success Criteria** (what must be TRUE):
+  1. No orphaned HeartbeatPayload or TOPICS.heartbeat code exists in the codebase
+  2. sendCommand value parameter matches CommandPayload optional schema
+  3. SchedulerUI action picker includes 'tone' for piezo scheduling
+  4. .env.example documents all environment variables including camera URLs
+  5. RETAIN export has TSDoc comment explaining hub-only usage
+  6. Drizzle migration applied to production Neon database
+  7. All tests pass and TypeScript compiles cleanly
+**Plans**: 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Code cleanup: dead heartbeat removal, sendCommand type fix, SchedulerUI tone action, RETAIN TSDoc
+- [ ] 05-02-PLAN.md — Documentation and ops: camera env vars in .env.example, Drizzle migration to production Neon
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-13 |
 | 2. Core Dashboard | 3/3 | Complete   | 2026-03-13 |
 | 3. Data and Enrichment | 3/3 | Complete   | 2026-03-13 |
-| 4. Gap Closure | 0/1 | Pending    | — |
+| 4. Gap Closure | 1/1 | Complete   | 2026-03-13 |
+| 5. Cleanup | 0/2 | Pending    | — |
