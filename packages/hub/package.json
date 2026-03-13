@@ -7,13 +7,16 @@
   },
   "dependencies": {
     "@johnnyredis/shared": "*",
-    "mqtt": "^5.0.0",
+    "@serialport/parser-readline": "^13.0.0",
     "dotenv": "^16.0.0",
-    "zod": "^3.0.0",
-    "tsx": "latest"
+    "mqtt": "^5.0.0",
+    "serialport": "^13.0.0",
+    "tsx": "latest",
+    "vitest": "^4.1.0",
+    "zod": "^3.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
   }
 }
