@@ -43,7 +43,7 @@ Plans:
   3. Dashboard shows online/offline status for the Pi hub and each Arduino board, updated via heartbeat within 90 seconds of a disconnect
   4. Opening the dashboard on a second device (phone + laptop) shows identical state, and a control action on one updates the other in real-time
   5. Dashboard loads and shows last-known hardware state even when no hardware is currently online; layout is usable on a phone screen
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
 - [ ] 02-01: Hub package — serialport v13 reads Arduino JSON over stable udev symlinks, serial reconnect loop, MQTT telemetry publish and command subscribe, LWT and heartbeat
