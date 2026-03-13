@@ -10,6 +10,16 @@ vi.mock('./components/ChartSection', () => ({
   ChartSection: () => <div data-testid="chart-section">Charts</div>,
 }))
 
+// Mock CameraSection — hls.js and video APIs unavailable in JSDOM
+vi.mock('./components/CameraSection', () => ({
+  CameraSection: () => <div data-testid="camera-section">Camera</div>,
+}))
+
+// Mock SchedulerUI — fetch calls not needed in unit tests
+vi.mock('./components/SchedulerUI', () => ({
+  SchedulerUI: () => <div data-testid="scheduler-ui">Scheduler</div>,
+}))
+
 // Mock EventSource globally — simulates empty state:init so dashboard renders without hardware
 class MockEventSource {
   url: string
@@ -44,8 +54,20 @@ class MockEventSource {
   }
 }
 
+// Mock localStorage — not available in JSDOM with this Vitest version
+const localStorageMock = (() => {
+  const store: Record<string, string> = {}
+  return {
+    getItem: (key: string) => store[key] ?? null,
+    setItem: (key: string, value: string) => { store[key] = value },
+    removeItem: (key: string) => { delete store[key] },
+    clear: () => { Object.keys(store).forEach((k) => delete store[k]) },
+  }
+})()
+
 beforeEach(() => {
   vi.stubGlobal('EventSource', MockEventSource)
+  vi.stubGlobal('localStorage', localStorageMock)
 })
 
 describe('App', () => {
