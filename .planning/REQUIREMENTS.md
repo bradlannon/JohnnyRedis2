@@ -37,8 +37,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Data & Visualization
 
-- [ ] **DATA-01**: Server persists sensor readings to PostgreSQL (Neon.tech) with timestamps
-- [ ] **DATA-02**: User can view time-series charts of sensor history (1h, 24h, 7d windows)
+- [x] **DATA-01**: Server persists sensor readings to PostgreSQL (Neon.tech) with timestamps
+- [x] **DATA-02**: User can view time-series charts of sensor history (1h, 24h, 7d windows)
 - [ ] **DATA-03**: Charts update in real-time as new sensor data arrives
 
 ### Camera
@@ -53,8 +53,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Scheduling
 
-- [ ] **SCHED-01**: User can create scheduled actions (e.g., turn on LEDs at a specific time)
-- [ ] **SCHED-02**: User can view, edit, and delete scheduled actions from dashboard
+- [x] **SCHED-01**: User can create scheduled actions (e.g., turn on LEDs at a specific time)
+- [x] **SCHED-02**: User can view, edit, and delete scheduled actions from dashboard
 
 ### Dashboard
 
@@ -127,15 +127,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-05 | Phase 2 | Complete |
 | DASH-01 | Phase 2 | Complete |
 | DASH-02 | Phase 2 | Complete |
-| DATA-01 | Phase 3 | Pending |
-| DATA-02 | Phase 3 | Pending |
+| DATA-01 | Phase 3 | Complete |
+| DATA-02 | Phase 3 | Complete |
 | DATA-03 | Phase 3 | Pending |
 | CAM-01 | Phase 3 | Pending |
 | CAM-02 | Phase 3 | Pending |
 | ALRT-01 | Phase 3 | Pending |
 | ALRT-02 | Phase 3 | Pending |
-| SCHED-01 | Phase 3 | Pending |
-| SCHED-02 | Phase 3 | Pending |
+| SCHED-01 | Phase 3 | Complete |
+| SCHED-02 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 24 total

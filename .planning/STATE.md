@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-13T02:45:36.362Z"
-last_activity: "2026-03-13 — Plan 02-03 complete: React dashboard with Tailwind v4, SSE client, actuator controls, sensor cards"
+status: in_progress
+stopped_at: "Completed 03-data-and-enrichment/03-01-PLAN.md"
+last_updated: "2026-03-13T12:29:00Z"
+last_activity: "2026-03-13 — Plan 03-01 complete: sensor data persistence, history API, schedules CRUD, node-cron scheduler"
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
-  percent: 100
+  total_plans: 8
+  completed_plans: 6
+  percent: 75
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-12)
 
 ## Current Position
 
-Phase: 2 of 3 (Core Dashboard) — COMPLETE
-Plan: 3 of 3 in Phase 02 complete
-Status: Phase 02 complete, ready for Phase 03
-Last activity: 2026-03-13 — Plan 02-03 complete: React dashboard with Tailwind v4, SSE client, actuator controls, sensor cards
+Phase: 3 of 3 (Data & Enrichment) — IN PROGRESS
+Plan: 1 of 3 in Phase 03 complete
+Status: Phase 03 plan 01 complete, ready for plan 02
+Last activity: 2026-03-13 — Plan 03-01 complete: sensor data persistence, history API, schedules CRUD, node-cron scheduler
 
-Progress: [██████████] 100% (6/6 plans complete)
+Progress: [████████░░] 75% (6/8 plans complete)
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [██████████] 100% (6/6 plans complete)
 | Phase 02-core-dashboard P01 | 3 min | 2 tasks | 8 files |
 | Phase 02-core-dashboard P02 | 8 min | 2 tasks | 9 files |
 | Phase 02-core-dashboard P03 | 6 min | 3 tasks | 20 files |
+| Phase 03-data-and-enrichment P01 | 6 min | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,10 @@ Recent decisions affecting current work:
 - [Phase 02-core-dashboard]: globals: true in vitest config required for @testing-library/jest-dom — jest-dom calls expect() at import time
 - [Phase 02-core-dashboard]: useSSE hook uses useReducer with dispatch from EventSource listeners for state:init/sensor:update/status:update
 - [Phase 02-core-dashboard]: Vite dev proxy for /events and /command to localhost:3000 — zero-config CORS for development, same-origin in production
+- [Phase 03-data-and-enrichment/03-01]: date_trunc with sql.raw() for interval string — prevents Drizzle from escaping SQL keywords in template tags
+- [Phase 03-data-and-enrichment/03-01]: historyRouter exported as plain Router (no factory) — no mqttClient dependency for read-only queries
+- [Phase 03-data-and-enrichment/03-01]: ScheduledTask imported as named type from node-cron — default cron import has no namespace
+- [Phase 03-data-and-enrichment/03-01]: drizzle-kit migrate requires DATABASE_URL (direct Neon) — migration SQL committed, apply on deployment server
 
 ### Pending Todos
 
@@ -92,12 +97,13 @@ None — Phase 1 blockers resolved:
 - SSE on Hostinger: VALIDATED (confirmed not batched, correct headers, keepalive working)
 - Neon pooler URL format: VALIDATED (DATABASE_POOLER_URL works with @neondatabase/serverless)
 
-Pending for Phase 3:
-- Run drizzle-kit generate && migrate against Neon to create sensor_readings table (deferred from Phase 2)
+Phase 3 in progress:
+- RESOLVED: drizzle-kit generate complete — migration SQL committed at packages/server/drizzle/0000_workable_raza.sql
+- PENDING: Run `DATABASE_URL=<direct-neon-url> npx drizzle-kit migrate` on deployment server
 - Visual redesign of dashboard (user approved functional dashboard; graphic designer redesign deferred)
 
 ## Session Continuity
 
-Last session: 2026-03-13T02:45:36.358Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-data-and-enrichment/03-CONTEXT.md
+Last session: 2026-03-13T12:29:00Z
+Stopped at: Completed 03-data-and-enrichment/03-01-PLAN.md
+Resume file: .planning/phases/03-data-and-enrichment/03-01-SUMMARY.md
