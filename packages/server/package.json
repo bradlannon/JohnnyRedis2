@@ -1,0 +1,23 @@
+{
+  "name": "@johnnyredis/server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@johnnyredis/shared": "*",
+    "express": "^4.0.0",
+    "mqtt": "^5.0.0",
+    "@neondatabase/serverless": "latest",
+    "drizzle-orm": "latest",
+    "dotenv": "^16.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/express": "^4.0.0",
+    "drizzle-kit": "latest"
+  }
+}
