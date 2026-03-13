@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 01-foundation/01-02-PLAN.md — SSE endpoint verified on Hostinger, MQTT client confirmed on HiveMQ Cloud, Phase 1 complete
-last_updated: "2026-03-13T01:24:37.366Z"
+stopped_at: Completed 02-core-dashboard/02-01-PLAN.md — Hub serial-to-MQTT bridge implemented
+last_updated: "2026-03-13T01:51:50.692Z"
 last_activity: "2026-03-13 — Plan 01-02 complete: SSE endpoint verified on Hostinger, MQTT client confirmed on HiveMQ Cloud"
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 5
+  completed_plans: 3
   percent: 100
 ---
 
@@ -50,6 +50,7 @@ Progress: [██████████] 100% (Phase 1 complete)
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 02-core-dashboard P01 | 3 min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,10 @@ Recent decisions affecting current work:
 - [Phase 01-foundation/01-02]: SSE X-Accel-Buffering: no header confirmed working on Hostinger nginx — Phase 1 gate cleared
 - [Phase 01-foundation/01-02]: DATABASE_POOLER_URL for Drizzle runtime; DATABASE_URL (direct) for drizzle-kit migrations only
 - [Phase 01-foundation/01-02]: MQTT LWT with retain:true — broker delivers offline state to new subscribers immediately without polling
+- [Phase 02-core-dashboard]: ArduinoSensorLine Zod schema (device/board/value only) + ts injected at parse time — Arduino never sends timestamps
+- [Phase 02-core-dashboard]: parseSensorLine pure (no MQTT side effects) — simplifies testing, caller handles publishing
+- [Phase 02-core-dashboard]: Fresh SerialPort instance on reconnect — serialport v13 does not support reopening closed ports
+- [Phase 02-core-dashboard]: getSerialPort() getter pattern — avoids circular imports, command handler gets current port from module state
 
 ### Pending Todos
 
@@ -84,6 +89,6 @@ Pending for Phase 2:
 
 ## Session Continuity
 
-Last session: 2026-03-13T01:17:55Z
-Stopped at: Completed 01-foundation/01-02-PLAN.md — SSE endpoint verified on Hostinger, MQTT client confirmed on HiveMQ Cloud, Phase 1 complete
+Last session: 2026-03-13T01:51:50.687Z
+Stopped at: Completed 02-core-dashboard/02-01-PLAN.md — Hub serial-to-MQTT bridge implemented
 Resume file: None

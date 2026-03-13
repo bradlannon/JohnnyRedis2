@@ -9,18 +9,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Control
 
-- [ ] **CTRL-01**: User can control RGB LED color from dashboard (color picker or sliders)
-- [ ] **CTRL-02**: User can control servo position from dashboard (slider)
-- [ ] **CTRL-03**: User can trigger piezo speaker tones from dashboard
-- [ ] **CTRL-04**: User can toggle individual LEDs on/off from dashboard
-- [ ] **CTRL-05**: User can send text to LCD 16x2 display from dashboard
+- [x] **CTRL-01**: User can control RGB LED color from dashboard (color picker or sliders)
+- [x] **CTRL-02**: User can control servo position from dashboard (slider)
+- [x] **CTRL-03**: User can trigger piezo speaker tones from dashboard
+- [x] **CTRL-04**: User can toggle individual LEDs on/off from dashboard
+- [x] **CTRL-05**: User can send text to LCD 16x2 display from dashboard
 
 ### Monitoring
 
-- [ ] **MON-01**: User can see live motion sensor state (detected/clear) on dashboard
-- [ ] **MON-02**: User can see live photoresistor reading on dashboard
-- [ ] **MON-03**: User can see live potentiometer value on dashboard
-- [ ] **MON-04**: User can see live button press state on dashboard
+- [x] **MON-01**: User can see live motion sensor state (detected/clear) on dashboard
+- [x] **MON-02**: User can see live photoresistor reading on dashboard
+- [x] **MON-03**: User can see live potentiometer value on dashboard
+- [x] **MON-04**: User can see live button press state on dashboard
 
 ### Infrastructure
 
@@ -33,7 +33,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Device Status
 
 - [ ] **STAT-01**: Dashboard shows online/offline status for the Pi hub (heartbeat-based)
-- [ ] **STAT-02**: Dashboard shows online/offline status for each connected Arduino board
+- [x] **STAT-02**: Dashboard shows online/offline status for each connected Arduino board
 
 ### Data & Visualization
 
@@ -112,17 +112,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Complete |
-| CTRL-01 | Phase 2 | Pending |
-| CTRL-02 | Phase 2 | Pending |
-| CTRL-03 | Phase 2 | Pending |
-| CTRL-04 | Phase 2 | Pending |
-| CTRL-05 | Phase 2 | Pending |
-| MON-01 | Phase 2 | Pending |
-| MON-02 | Phase 2 | Pending |
-| MON-03 | Phase 2 | Pending |
-| MON-04 | Phase 2 | Pending |
+| CTRL-01 | Phase 2 | Complete |
+| CTRL-02 | Phase 2 | Complete |
+| CTRL-03 | Phase 2 | Complete |
+| CTRL-04 | Phase 2 | Complete |
+| CTRL-05 | Phase 2 | Complete |
+| MON-01 | Phase 2 | Complete |
+| MON-02 | Phase 2 | Complete |
+| MON-03 | Phase 2 | Complete |
+| MON-04 | Phase 2 | Complete |
 | STAT-01 | Phase 2 | Pending |
-| STAT-02 | Phase 2 | Pending |
+| STAT-02 | Phase 2 | Complete |
 | INFRA-04 | Phase 2 | Pending |
 | INFRA-05 | Phase 2 | Pending |
 | DASH-01 | Phase 2 | Pending |
