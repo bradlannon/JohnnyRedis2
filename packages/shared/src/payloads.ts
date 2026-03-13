@@ -16,7 +16,7 @@ export const CommandPayload = z.object({
   device: z.string(),
   board:  z.string(),
   action: z.string(),
-  value:  z.union([z.string(), z.number(), z.boolean()]),
+  value:  z.union([z.string(), z.number(), z.boolean()]).optional(),
 })
 
 export const HeartbeatPayload = z.object({

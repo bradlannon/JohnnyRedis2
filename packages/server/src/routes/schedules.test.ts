@@ -124,6 +124,16 @@ describe('Schedules CRUD API', () => {
       await request(app).post('/api/schedules').send(VALID_SCHEDULE)
       expect(vi.mocked(db.insert)).toHaveBeenCalledOnce()
     })
+
+    it('creates a schedule without value field and returns 201', async () => {
+      const scheduleNoValue = {
+        name: 'Turn on light',
+        cronExpression: '*/5 * * * *',
+        command: { device: 'led1', board: 'nano', action: 'on' },
+      }
+      const res = await request(app).post('/api/schedules').send(scheduleNoValue)
+      expect(res.status).toBe(201)
+    })
   })
 
   describe('GET /api/schedules', () => {
@@ -148,6 +158,14 @@ describe('Schedules CRUD API', () => {
 
       await request(app).put('/api/schedules/1').send(VALID_SCHEDULE)
       expect(vi.mocked(stopJob)).toHaveBeenCalledWith(1)
+    })
+
+    it('updates a schedule to remove value field and returns 200', async () => {
+      const updateNoValue = {
+        command: { device: 'led1', board: 'nano', action: 'off' },
+      }
+      const res = await request(app).put('/api/schedules/1').send(updateNoValue)
+      expect(res.status).toBe(200)
     })
   })
 
