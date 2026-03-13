@@ -112,4 +112,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Core Dashboard | 3/3 | Complete   | 2026-03-13 |
 | 3. Data and Enrichment | 3/3 | Complete   | 2026-03-13 |
 | 4. Gap Closure | 1/1 | Complete   | 2026-03-13 |
-| 5. Cleanup | 0/2 | Pending    | — |
+| 5. Cleanup | 1/2 | In Progress|  |

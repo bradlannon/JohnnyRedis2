@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-gap-closure/04-01-PLAN.md — Phase 04 COMPLETE
-last_updated: "2026-03-13T21:38:23.879Z"
+stopped_at: Completed 05-cleanup/05-01-PLAN.md
+last_updated: "2026-03-13T22:12:16.367Z"
 last_activity: "2026-03-13 — Plan 03-03 complete: HLS camera player, motion notifications, SchedulerUI CRUD — Phase 3 COMPLETE"
 progress:
-  total_phases: 4
+  total_phases: 5
   completed_phases: 4
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 11
+  completed_plans: 10
   percent: 100
 ---
 
@@ -57,6 +57,7 @@ Progress: [██████████] 100% (8/8 plans complete)
 | Phase 03-data-and-enrichment P02 | 5 min | 2 tasks | 11 files |
 | Phase 03-data-and-enrichment P03 | 30 min | 3 tasks | 11 files |
 | Phase 04-gap-closure P01 | 2 | 2 tasks | 4 files |
+| Phase 05-cleanup P01 | 4 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -100,6 +101,13 @@ Recent decisions affecting current work:
 - [Phase 03-data-and-enrichment/03-03]: Vite /api proxy added alongside /events and /command for schedules/history dev routing
 - [Phase 04-gap-closure]: CommandPayload.value made optional (not removed) — backward compatible; undefined omitted from JSON
 - [Phase 04-gap-closure]: cors package replaces manual CORS — covers OPTIONS preflight that manual header missed
+- [Phase 05-cleanup]: HeartbeatPayload fully removed — zero consumers outside shared package, confirmed safe to delete
+- [Phase 05-cleanup]: sendCommand value made optional with conditional spread — undefined omitted from JSON body, matching CommandPayload schema
+- [Phase 05-cleanup]: RETAIN TSDoc clarifies hub-only usage — server is subscribe-only MQTT client
+
+### Roadmap Evolution
+
+- Phase 5 added: cleanup
 
 ### Pending Todos
 
@@ -118,6 +126,6 @@ Phase 3 in progress:
 
 ## Session Continuity
 
-Last session: 2026-03-13T21:36:28.089Z
-Stopped at: Completed 04-gap-closure/04-01-PLAN.md — Phase 04 COMPLETE
+Last session: 2026-03-13T22:12:16.363Z
+Stopped at: Completed 05-cleanup/05-01-PLAN.md
 Resume file: None
