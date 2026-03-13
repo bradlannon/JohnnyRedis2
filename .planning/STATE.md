@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-core-dashboard/02-02-PLAN.md — Server MQTT-to-SSE bridge with state cache and POST /command implemented
-last_updated: "2026-03-13T01:56:00.000Z"
+status: executing
+stopped_at: "Checkpoint: Task 3 of 02-03-PLAN.md — dashboard browser verification awaiting user approval"
+last_updated: "2026-03-13T01:59:10.143Z"
 last_activity: "2026-03-13 — Plan 02-02 complete: StateCache, MQTT subscriber, SSE state:init replay, POST /command endpoint"
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
   percent: 80
 ---
 
@@ -52,6 +52,7 @@ Progress: [████████░░] 80% (4/5 plans complete)
 *Updated after each plan completion*
 | Phase 02-core-dashboard P01 | 3 min | 2 tasks | 8 files |
 | Phase 02-core-dashboard P02 | 8 min | 2 tasks | 9 files |
+| Phase 02-core-dashboard P03 | 4 min | 2 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [Phase 02-core-dashboard/02-02]: Subscribe to home/sensor/# and home/status/# only (NOT home/#) — prevents command loop where server receives its own published commands
 - [Phase 02-core-dashboard/02-02]: createCommandRouter(mqttClient) factory function — dependency injection pattern for testable Express routers
 - [Phase 02-core-dashboard/02-02]: stateCache singleton at module level in state/cache.ts — shared between subscriber.ts and sse/index.ts without circular deps
+- [Phase 02-core-dashboard]: globals: true in vitest config required for @testing-library/jest-dom — jest-dom calls expect() at import time
+- [Phase 02-core-dashboard]: useSSE hook uses useReducer with dispatch from EventSource listeners for state:init/sensor:update/status:update
+- [Phase 02-core-dashboard]: Vite dev proxy for /events and /command to localhost:3000 — zero-config CORS for development, same-origin in production
 
 ### Pending Todos
 
@@ -93,6 +97,6 @@ Pending for Phase 2:
 
 ## Session Continuity
 
-Last session: 2026-03-13T01:56:00Z
-Stopped at: Completed 02-core-dashboard/02-02-PLAN.md — Server MQTT-to-SSE bridge with state cache and POST /command implemented
+Last session: 2026-03-13T01:59:10.138Z
+Stopped at: Checkpoint: Task 3 of 02-03-PLAN.md — dashboard browser verification awaiting user approval
 Resume file: None

@@ -58,8 +58,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Dashboard
 
-- [ ] **DASH-01**: Dashboard is responsive and usable on mobile devices
-- [ ] **DASH-02**: Dashboard loads and renders without requiring hardware to be online
+- [x] **DASH-01**: Dashboard is responsive and usable on mobile devices
+- [x] **DASH-02**: Dashboard loads and renders without requiring hardware to be online
 
 ## v2 Requirements
 
@@ -125,8 +125,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STAT-02 | Phase 2 | Complete |
 | INFRA-04 | Phase 2 | Complete |
 | INFRA-05 | Phase 2 | Complete |
-| DASH-01 | Phase 2 | Pending |
-| DASH-02 | Phase 2 | Pending |
+| DASH-01 | Phase 2 | Complete |
+| DASH-02 | Phase 2 | Complete |
 | DATA-01 | Phase 3 | Pending |
 | DATA-02 | Phase 3 | Pending |
 | DATA-03 | Phase 3 | Pending |
