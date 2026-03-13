@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-13 |
-| 2. Core Dashboard | 0/3 | Not started | - |
+| 2. Core Dashboard | 2/3 | In Progress|  |
 | 3. Data and Enrichment | 0/2 | Not started | - |

@@ -27,12 +27,12 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INFRA-01**: Pi hub communicates with web server via MQTT through HiveMQ Cloud broker
 - [x] **INFRA-02**: Web server pushes real-time updates to browsers via SSE (Server-Sent Events)
 - [x] **INFRA-03**: All connections from Pi are outbound-only — no ports opened on home network
-- [ ] **INFRA-04**: Dashboard state replays last-known values on page load (no stale/empty UI)
-- [ ] **INFRA-05**: State changes sync across all open browser sessions in real-time
+- [x] **INFRA-04**: Dashboard state replays last-known values on page load (no stale/empty UI)
+- [x] **INFRA-05**: State changes sync across all open browser sessions in real-time
 
 ### Device Status
 
-- [ ] **STAT-01**: Dashboard shows online/offline status for the Pi hub (heartbeat-based)
+- [x] **STAT-01**: Dashboard shows online/offline status for the Pi hub (heartbeat-based)
 - [x] **STAT-02**: Dashboard shows online/offline status for each connected Arduino board
 
 ### Data & Visualization
@@ -121,10 +121,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MON-02 | Phase 2 | Complete |
 | MON-03 | Phase 2 | Complete |
 | MON-04 | Phase 2 | Complete |
-| STAT-01 | Phase 2 | Pending |
+| STAT-01 | Phase 2 | Complete |
 | STAT-02 | Phase 2 | Complete |
-| INFRA-04 | Phase 2 | Pending |
-| INFRA-05 | Phase 2 | Pending |
+| INFRA-04 | Phase 2 | Complete |
+| INFRA-05 | Phase 2 | Complete |
 | DASH-01 | Phase 2 | Pending |
 | DASH-02 | Phase 2 | Pending |
 | DATA-01 | Phase 3 | Pending |

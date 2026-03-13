@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 02-core-dashboard/02-01-PLAN.md — Hub serial-to-MQTT bridge implemented
-last_updated: "2026-03-13T01:51:50.692Z"
-last_activity: "2026-03-13 — Plan 01-02 complete: SSE endpoint verified on Hostinger, MQTT client confirmed on HiveMQ Cloud"
+stopped_at: Completed 02-core-dashboard/02-02-PLAN.md — Server MQTT-to-SSE bridge with state cache and POST /command implemented
+last_updated: "2026-03-13T01:56:00.000Z"
+last_activity: "2026-03-13 — Plan 02-02 complete: StateCache, MQTT subscriber, SSE state:init replay, POST /command endpoint"
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 5
-  completed_plans: 3
-  percent: 100
+  completed_plans: 4
+  percent: 80
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-12)
 
 ## Current Position
 
-Phase: 1 of 3 (Foundation) — COMPLETE
-Plan: 2 of 2 in current phase (phase complete)
-Status: Phase 1 Complete
-Last activity: 2026-03-13 — Plan 01-02 complete: SSE endpoint verified on Hostinger, MQTT client confirmed on HiveMQ Cloud
+Phase: 2 of 3 (Core Dashboard) — IN PROGRESS
+Plan: 2 of 3 in current phase
+Status: In Progress
+Last activity: 2026-03-13 — Plan 02-02 complete: StateCache, MQTT subscriber, SSE state:init replay, POST /command endpoint
 
-Progress: [██████████] 100% (Phase 1 complete)
+Progress: [████████░░] 80% (4/5 plans complete)
 
 ## Performance Metrics
 
@@ -51,6 +51,7 @@ Progress: [██████████] 100% (Phase 1 complete)
 
 *Updated after each plan completion*
 | Phase 02-core-dashboard P01 | 3 min | 2 tasks | 8 files |
+| Phase 02-core-dashboard P02 | 8 min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - [Phase 02-core-dashboard]: parseSensorLine pure (no MQTT side effects) — simplifies testing, caller handles publishing
 - [Phase 02-core-dashboard]: Fresh SerialPort instance on reconnect — serialport v13 does not support reopening closed ports
 - [Phase 02-core-dashboard]: getSerialPort() getter pattern — avoids circular imports, command handler gets current port from module state
+- [Phase 02-core-dashboard/02-02]: Subscribe to home/sensor/# and home/status/# only (NOT home/#) — prevents command loop where server receives its own published commands
+- [Phase 02-core-dashboard/02-02]: createCommandRouter(mqttClient) factory function — dependency injection pattern for testable Express routers
+- [Phase 02-core-dashboard/02-02]: stateCache singleton at module level in state/cache.ts — shared between subscriber.ts and sse/index.ts without circular deps
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ Pending for Phase 2:
 
 ## Session Continuity
 
-Last session: 2026-03-13T01:51:50.687Z
-Stopped at: Completed 02-core-dashboard/02-01-PLAN.md — Hub serial-to-MQTT bridge implemented
+Last session: 2026-03-13T01:56:00Z
+Stopped at: Completed 02-core-dashboard/02-02-PLAN.md — Server MQTT-to-SSE bridge with state cache and POST /command implemented
 Resume file: None
