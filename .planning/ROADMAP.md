@@ -12,7 +12,7 @@ Three phases take this from an empty monorepo to a fully-operational IoT home au
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Monorepo scaffold, external services wired, SSE validated on Hostinger, Pi hub talking to Arduino over stable serial
+- [x] **Phase 1: Foundation** - Monorepo scaffold, external services wired, SSE validated on Hostinger, Pi hub talking to Arduino over stable serial (completed 2026-03-13)
 - [ ] **Phase 2: Core Dashboard** - Real-time actuator control, live sensor display, device status indicators, multi-session sync, responsive layout
 - [ ] **Phase 3: Data and Enrichment** - Historical sensor charts, 24/7 camera stream, motion alerts, scheduled actions
 
@@ -72,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In Progress|  |
+| 1. Foundation | 2/2 | Complete   | 2026-03-13 |
 | 2. Core Dashboard | 0/3 | Not started | - |
 | 3. Data and Enrichment | 0/2 | Not started | - |

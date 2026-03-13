@@ -25,8 +25,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Infrastructure
 
 - [x] **INFRA-01**: Pi hub communicates with web server via MQTT through HiveMQ Cloud broker
-- [ ] **INFRA-02**: Web server pushes real-time updates to browsers via SSE (Server-Sent Events)
-- [ ] **INFRA-03**: All connections from Pi are outbound-only — no ports opened on home network
+- [x] **INFRA-02**: Web server pushes real-time updates to browsers via SSE (Server-Sent Events)
+- [x] **INFRA-03**: All connections from Pi are outbound-only — no ports opened on home network
 - [ ] **INFRA-04**: Dashboard state replays last-known values on page load (no stale/empty UI)
 - [ ] **INFRA-05**: State changes sync across all open browser sessions in real-time
 
@@ -110,8 +110,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | INFRA-01 | Phase 1 | Complete |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
 | CTRL-01 | Phase 2 | Pending |
 | CTRL-02 | Phase 2 | Pending |
 | CTRL-03 | Phase 2 | Pending |
