@@ -6,6 +6,7 @@ export default defineConfig({
       'packages/shared',
       'packages/server',
       'packages/hub',
+      'packages/web',
     ],
   },
 })
