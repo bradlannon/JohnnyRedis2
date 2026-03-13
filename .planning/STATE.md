@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-stopped_at: "Completed 03-data-and-enrichment/03-01-PLAN.md"
-last_updated: "2026-03-13T12:29:00Z"
+status: completed
+stopped_at: Completed 03-data-and-enrichment/03-02-PLAN.md
+last_updated: "2026-03-13T12:37:38.593Z"
 last_activity: "2026-03-13 — Plan 03-01 complete: sensor data persistence, history API, schedules CRUD, node-cron scheduler"
 progress:
   total_phases: 3
   completed_phases: 2
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
   percent: 75
 ---
 
@@ -54,6 +54,7 @@ Progress: [████████░░] 75% (6/8 plans complete)
 | Phase 02-core-dashboard P02 | 8 min | 2 tasks | 9 files |
 | Phase 02-core-dashboard P03 | 6 min | 3 tasks | 20 files |
 | Phase 03-data-and-enrichment P01 | 6 min | 3 tasks | 11 files |
+| Phase 03-data-and-enrichment P02 | 5 min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 03-data-and-enrichment/03-01]: historyRouter exported as plain Router (no factory) — no mqttClient dependency for read-only queries
 - [Phase 03-data-and-enrichment/03-01]: ScheduledTask imported as named type from node-cron — default cron import has no namespace
 - [Phase 03-data-and-enrichment/03-01]: drizzle-kit migrate requires DATABASE_URL (direct Neon) — migration SQL committed, apply on deployment server
+- [Phase 03-data-and-enrichment/03-02]: chartjs-plugin-crosshair has no @types package — added local declaration file at src/types/chartjs-plugin-crosshair.d.ts
+- [Phase 03-data-and-enrichment/03-02]: App.test.tsx mocks chartSetup and ChartSection to prevent Chart.js registration errors in JSDOM test environment
+- [Phase 03-data-and-enrichment/03-02]: Real-time append only for 1h window (raw data) — skipped for 24h/7d since aggregated buckets would be stale
 
 ### Pending Todos
 
@@ -104,6 +108,6 @@ Phase 3 in progress:
 
 ## Session Continuity
 
-Last session: 2026-03-13T12:29:00Z
-Stopped at: Completed 03-data-and-enrichment/03-01-PLAN.md
-Resume file: .planning/phases/03-data-and-enrichment/03-01-SUMMARY.md
+Last session: 2026-03-13T12:37:38.590Z
+Stopped at: Completed 03-data-and-enrichment/03-02-PLAN.md
+Resume file: None

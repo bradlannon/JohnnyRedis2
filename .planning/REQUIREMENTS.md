@@ -39,7 +39,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **DATA-01**: Server persists sensor readings to PostgreSQL (Neon.tech) with timestamps
 - [x] **DATA-02**: User can view time-series charts of sensor history (1h, 24h, 7d windows)
-- [ ] **DATA-03**: Charts update in real-time as new sensor data arrives
+- [x] **DATA-03**: Charts update in real-time as new sensor data arrives
 
 ### Camera
 
@@ -129,7 +129,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-02 | Phase 2 | Complete |
 | DATA-01 | Phase 3 | Complete |
 | DATA-02 | Phase 3 | Complete |
-| DATA-03 | Phase 3 | Pending |
+| DATA-03 | Phase 3 | Complete |
 | CAM-01 | Phase 3 | Pending |
 | CAM-02 | Phase 3 | Pending |
 | ALRT-01 | Phase 3 | Pending |
