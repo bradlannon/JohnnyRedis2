@@ -59,11 +59,12 @@ Plans:
   2. User can watch a live camera stream on the dashboard sourced from the Pi's webcam or Pi Camera, streamed via HLS through Cloudflare Tunnel with no home network ports opened
   3. User receives a browser notification when motion is detected, and can enable or disable alerts per sensor from the dashboard
   4. User can create, view, edit, and delete scheduled actions (e.g., turn on LEDs at 18:00) that execute reliably on the server
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Data persistence and charts — server writes MQTT telemetry to Neon PostgreSQL; REST API for time-range queries; React Chart.js components with 1h/24h/7d selector and real-time updates; 30-day retention policy
-- [ ] 03-02: Camera, alerts, and scheduling — MediaMTX HLS on Pi via Cloudflare Tunnel; hls.js React component; Web Notifications API with per-sensor toggle; server-side scheduler with CRUD API and dashboard UI
+- [ ] 03-01-PLAN.md — Server data layer: DB persistence in MQTT subscriber, history REST API with aggregation, schedules CRUD API, node-cron scheduler, 30-day retention
+- [ ] 03-02-PLAN.md — BI-quality chart dashboard: Chart.js time-series with synchronized crosshair, zoom/pan, real-time SSE updates, 1h/24h/7d window selector
+- [ ] 03-03-PLAN.md — Camera, alerts, and scheduler UI: HLS player with dual-feed tabs, motion alert notifications with per-sensor toggle, scheduler CRUD dashboard
 
 ## Progress
 
@@ -74,4 +75,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-13 |
 | 2. Core Dashboard | 3/3 | Complete   | 2026-03-13 |
-| 3. Data and Enrichment | 0/2 | Not started | - |
+| 3. Data and Enrichment | 0/3 | Not started | - |
