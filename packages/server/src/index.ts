@@ -6,6 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 dotenv.config({ path: resolve(__dirname, '../../../.env') })
 
 import express from 'express'
+import cors from 'cors'
 import sseRouter from './sse/index.js'
 import { TOPICS } from '@johnnyredis/shared'
 import { connectMqttSubscriber } from './mqtt/subscriber.js'
@@ -19,11 +20,12 @@ const PORT = process.env['PORT'] ?? 3000
 
 app.use(express.json())
 
-// CORS headers for development
-app.use((_req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*')
-  next()
-})
+// CORS middleware — handles preflight OPTIONS and sets headers for all routes
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}))
 
 // Health check
 app.get('/health', (_req, res) => {
