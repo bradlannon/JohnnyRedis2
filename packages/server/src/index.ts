@@ -3,6 +3,9 @@ import sseRouter from './sse/index.js'
 import { TOPICS } from '@johnnyredis/shared'
 import { connectMqttSubscriber } from './mqtt/subscriber.js'
 import createCommandRouter from './routes/command.js'
+import historyRouter from './routes/history.js'
+import createSchedulesRouter from './routes/schedules.js'
+import { loadAndScheduleAll, registerRetentionJob } from './scheduler/index.js'
 
 const app = express()
 const PORT = process.env['PORT'] ?? 3000
@@ -29,9 +32,19 @@ const mqttClient = connectMqttSubscriber()
 // Command route: POST /command validates and publishes to MQTT
 app.use(createCommandRouter(mqttClient))
 
+// Sensor history: GET /api/sensors/:device/history
+app.use('/api', historyRouter)
+
+// Schedules CRUD: POST/GET/PUT/DELETE /api/schedules
+app.use('/api', createSchedulesRouter(mqttClient))
+
 app.listen(PORT, () => {
   console.log(`JohnnyRedis Server listening on port ${PORT}`)
   console.log('MQTT topics available:', Object.keys(TOPICS))
+
+  // Bootstrap scheduled jobs and daily retention
+  loadAndScheduleAll(mqttClient).catch(err => console.error('[scheduler] Failed to load jobs:', err))
+  registerRetentionJob()
 })
 
 export default app

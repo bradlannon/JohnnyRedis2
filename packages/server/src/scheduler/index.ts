@@ -1,4 +1,4 @@
-import cron from 'node-cron'
+import cron, { type ScheduledTask } from 'node-cron'
 import type { MqttClient } from 'mqtt'
 import { db } from '../db/client.js'
 import { scheduledActions } from '../db/schema.js'
@@ -13,7 +13,7 @@ type ScheduledAction = typeof scheduledActions.$inferSelect
  * Map of active cron tasks keyed by scheduled action DB id.
  * Exported for testing and route-level access.
  */
-export const activeTasks = new Map<number, cron.ScheduledTask>()
+export const activeTasks = new Map<number, ScheduledTask>()
 
 /**
  * Register a DB-sourced scheduled action as a running cron task.

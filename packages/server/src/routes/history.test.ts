@@ -55,10 +55,11 @@ describe('GET /api/sensors/:device/history', () => {
     const selectMock = vi.mocked(db.select)
 
     // Default: raw rows for 1h
-    selectMock.mockImplementation(() => buildDbMock(RAW_ROWS) as ReturnType<typeof db.select>)
+    selectMock.mockImplementation(() => buildDbMock(RAW_ROWS) as unknown as ReturnType<typeof db.select>)
 
-    const { default: historyRouter } = await import('./history.js')
-    app.use('/api', historyRouter)
+    const historyModule = await import('./history.js')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    app.use('/api', historyModule.default as any)
   })
 
   it('returns 400 for invalid window param', async () => {
@@ -84,7 +85,7 @@ describe('GET /api/sensors/:device/history', () => {
   it('returns aggregated data with avgValue for window=24h', async () => {
     const { db } = await import('../db/client.js')
     const selectMock = vi.mocked(db.select)
-    selectMock.mockImplementation(() => buildDbMock(AGG_ROWS) as ReturnType<typeof db.select>)
+    selectMock.mockImplementation(() => buildDbMock(AGG_ROWS) as unknown as ReturnType<typeof db.select>)
 
     const res = await request(app).get('/api/sensors/photoresistor/history?board=nano&window=24h')
     expect(res.status).toBe(200)
@@ -95,7 +96,7 @@ describe('GET /api/sensors/:device/history', () => {
   it('returns aggregated data for window=7d', async () => {
     const { db } = await import('../db/client.js')
     const selectMock = vi.mocked(db.select)
-    selectMock.mockImplementation(() => buildDbMock(AGG_ROWS) as ReturnType<typeof db.select>)
+    selectMock.mockImplementation(() => buildDbMock(AGG_ROWS) as unknown as ReturnType<typeof db.select>)
 
     const res = await request(app).get('/api/sensors/photoresistor/history?board=nano&window=7d')
     expect(res.status).toBe(200)

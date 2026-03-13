@@ -84,12 +84,14 @@ describe('Schedules CRUD API', () => {
     mockMqttClient = { publish: vi.fn() } as unknown as MqttClient
 
     const { db } = await import('../db/client.js')
-    vi.mocked(db.select).mockImplementation(() => buildSelectChain([DB_RECORD]) as ReturnType<typeof db.select>)
-    vi.mocked(db.insert).mockImplementation(() => buildInsertChain(DB_RECORD) as ReturnType<typeof db.insert>)
-    vi.mocked(db.update).mockImplementation(() => buildUpdateChain(DB_RECORD) as ReturnType<typeof db.update>)
-    vi.mocked(db.delete).mockImplementation(() => buildDeleteChain() as ReturnType<typeof db.delete>)
+    vi.mocked(db.select).mockImplementation(() => buildSelectChain([DB_RECORD]) as unknown as ReturnType<typeof db.select>)
+    vi.mocked(db.insert).mockImplementation(() => buildInsertChain(DB_RECORD) as unknown as ReturnType<typeof db.insert>)
+    vi.mocked(db.update).mockImplementation(() => buildUpdateChain(DB_RECORD) as unknown as ReturnType<typeof db.update>)
+    vi.mocked(db.delete).mockImplementation(() => buildDeleteChain() as unknown as ReturnType<typeof db.delete>)
 
-    const { default: createSchedulesRouter } = await import('./schedules.js')
+    const schedulesModule = await import('./schedules.js')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const createSchedulesRouter = schedulesModule.default as unknown as (client: MqttClient) => import('express').Router
     app.use('/api', createSchedulesRouter(mockMqttClient))
   })
 
