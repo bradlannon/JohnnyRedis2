@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 type Device = 'rgb' | 'servo' | 'led1' | 'led2' | 'piezo' | 'lcd'
 type Board = 'nano'
-type Action = 'on' | 'off' | 'set'
+type Action = 'on' | 'off' | 'set' | 'tone'
 
 interface CommandPayload {
   device: Device
@@ -48,7 +48,7 @@ function defaultForm(): FormState {
 }
 
 const DEVICES: Device[] = ['rgb', 'servo', 'led1', 'led2', 'piezo', 'lcd']
-const ACTIONS: Action[] = ['on', 'off', 'set']
+const ACTIONS: Action[] = ['on', 'off', 'set', 'tone']
 
 // ---- Component ----
 
