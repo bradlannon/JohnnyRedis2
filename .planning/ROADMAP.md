@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Core Dashboard** - Real-time actuator control, live sensor display, device status indicators, multi-session sync, responsive layout (completed 2026-03-13)
 - [x] **Phase 3: Data and Enrichment** - Historical sensor charts, 24/7 camera stream, motion alerts, scheduled actions (completed 2026-03-13)
 - [x] **Phase 4: Gap Closure — Schema Fix and CORS** - Fix CommandPayload.value optionality bug and add CORS preflight handler for production (completed 2026-03-13)
-- [ ] **Phase 5: Cleanup** - Tech debt resolution: dead code removal, type alignment, UI gap fix, documentation, DB migration
+- [x] **Phase 5: Cleanup** - Tech debt resolution: dead code removal, type alignment, UI gap fix, documentation, DB migration (completed 2026-03-13)
 
 ## Phase Details
 
@@ -112,4 +112,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Core Dashboard | 3/3 | Complete   | 2026-03-13 |
 | 3. Data and Enrichment | 3/3 | Complete   | 2026-03-13 |
 | 4. Gap Closure | 1/1 | Complete   | 2026-03-13 |
-| 5. Cleanup | 1/2 | In Progress|  |
+| 5. Cleanup | 2/2 | Complete   | 2026-03-13 |

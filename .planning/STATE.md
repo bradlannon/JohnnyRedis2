@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-cleanup/05-01-PLAN.md
-last_updated: "2026-03-13T22:12:16.367Z"
+stopped_at: Completed 05-cleanup/05-02-PLAN.md
+last_updated: "2026-03-13T22:49:20.307Z"
 last_activity: "2026-03-13 — Plan 03-03 complete: HLS camera player, motion notifications, SchedulerUI CRUD — Phase 3 COMPLETE"
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
   percent: 100
 ---
 
@@ -58,6 +58,7 @@ Progress: [██████████] 100% (8/8 plans complete)
 | Phase 03-data-and-enrichment P03 | 30 min | 3 tasks | 11 files |
 | Phase 04-gap-closure P01 | 2 | 2 tasks | 4 files |
 | Phase 05-cleanup P01 | 4 | 2 tasks | 6 files |
+| Phase 05-cleanup P02 | 5 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -104,6 +105,8 @@ Recent decisions affecting current work:
 - [Phase 05-cleanup]: HeartbeatPayload fully removed — zero consumers outside shared package, confirmed safe to delete
 - [Phase 05-cleanup]: sendCommand value made optional with conditional spread — undefined omitted from JSON body, matching CommandPayload schema
 - [Phase 05-cleanup]: RETAIN TSDoc clarifies hub-only usage — server is subscribe-only MQTT client
+- [Phase 05-cleanup]: Camera env vars are optional (Vite build-time only) — graceful degradation if omitted; documented in .env.example
+- [Phase 05-cleanup]: Drizzle migration applied with direct Neon URL (not pooler) — DDL requires direct connection, not PgBouncer
 
 ### Roadmap Evolution
 
@@ -126,6 +129,6 @@ Phase 3 in progress:
 
 ## Session Continuity
 
-Last session: 2026-03-13T22:12:16.363Z
-Stopped at: Completed 05-cleanup/05-01-PLAN.md
+Last session: 2026-03-13T22:49:20.303Z
+Stopped at: Completed 05-cleanup/05-02-PLAN.md
 Resume file: None
