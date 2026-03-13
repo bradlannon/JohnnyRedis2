@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && npm run build --workspace=packages/web",
+    "start": "node packages/server/dist/index.js",
     "test": "vitest run"
   },
   "devDependencies": {

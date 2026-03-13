@@ -27,6 +27,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type'],
 }))
 
+// Serve React static files in production
+const webDist = resolve(__dirname, '../../../packages/web/dist')
+app.use(express.static(webDist))
+
 // Health check
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' })
@@ -46,6 +50,11 @@ app.use('/api', historyRouter)
 
 // Schedules CRUD: POST/GET/PUT/DELETE /api/schedules
 app.use('/api', createSchedulesRouter(mqttClient))
+
+// SPA fallback — serve index.html for unmatched routes
+app.get('*', (_req, res) => {
+  res.sendFile(resolve(webDist, 'index.html'))
+})
 
 app.listen(PORT, () => {
   console.log(`JohnnyRedis Server listening on port ${PORT}`)
