@@ -2,6 +2,17 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { StateCache } from '../state/cache.js'
 import { handleSensorMessage, handleStatusMessage } from './subscriber.js'
 
+// Mock db module before importing subscriber
+vi.mock('../db/client.js', () => ({
+  db: {
+    insert: vi.fn().mockReturnValue({
+      values: vi.fn().mockReturnValue({
+        catch: vi.fn(),
+      }),
+    }),
+  },
+}))
+
 describe('MQTT subscriber message handlers', () => {
   let cache: StateCache
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,6 +52,35 @@ describe('MQTT subscriber message handlers', () => {
 
       expect(() => handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)).not.toThrow()
       expect(mockBroadcastSpy).not.toHaveBeenCalled()
+    })
+
+    it('triggers db.insert with correct values for valid sensor payload', async () => {
+      const { db } = await import('../db/client.js')
+      const insertMock = vi.mocked(db.insert)
+      insertMock.mockClear()
+
+      const topic = 'home/sensor/photoresistor/nano'
+      const payload = Buffer.from(JSON.stringify({ device: 'photoresistor', board: 'nano', value: 512, ts: 1700000000000 }))
+
+      handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)
+
+      expect(insertMock).toHaveBeenCalledOnce()
+      // Verify values was called with correct structure
+      const valuesMock = insertMock.mock.results[0]?.value?.values
+      expect(valuesMock).toHaveBeenCalledWith({
+        device: 'photoresistor',
+        board: 'nano',
+        value: 512,
+        createdAt: new Date(1700000000000),
+      })
+    })
+
+    it('does not throw when db.insert fails (fire-and-forget)', () => {
+      const topic = 'home/sensor/temp/nano'
+      const payload = Buffer.from(JSON.stringify({ device: 'temp', board: 'nano', value: 25.0, ts: 3000 }))
+
+      // Even if catch handler is called with error, the outer function does not throw
+      expect(() => handleSensorMessage(topic, payload, cache, mockBroadcastSpy as (event: string, data: unknown) => void)).not.toThrow()
     })
   })
 

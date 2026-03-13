@@ -2,6 +2,8 @@ import mqtt from 'mqtt'
 import { SensorPayload, StatusPayload } from '@johnnyredis/shared'
 import { stateCache, type StateCache } from '../state/cache.js'
 import { broadcast } from '../sse/index.js'
+import { db } from '../db/client.js'
+import { sensorReadings } from '../db/schema.js'
 
 type BroadcastFn = (event: string, data: unknown) => void
 
@@ -23,6 +25,16 @@ export function handleSensorMessage(
     const { device, board, value, ts } = parsed.data
     cache.setSensor(device, board, value, ts)
     broadcastFn('sensor:update', { device, board, value, ts })
+
+    // Fire-and-forget: persist to DB without blocking the sync handler
+    db.insert(sensorReadings).values({
+      device,
+      board,
+      value,
+      createdAt: new Date(ts),
+    }).catch((err) => {
+      console.error('[db] Failed to persist sensor reading:', err)
+    })
   } catch {
     // Ignore malformed payloads
   }
