@@ -2,6 +2,14 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import App from './App'
 
+// Mock chartSetup to prevent Chart.js registration errors in JSDOM
+vi.mock('./lib/chartSetup', () => ({}))
+
+// Mock ChartSection to isolate App rendering from chart dependencies
+vi.mock('./components/ChartSection', () => ({
+  ChartSection: () => <div data-testid="chart-section">Charts</div>,
+}))
+
 // Mock EventSource globally — simulates empty state:init so dashboard renders without hardware
 class MockEventSource {
   url: string

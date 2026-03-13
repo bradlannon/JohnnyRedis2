@@ -1,3 +1,4 @@
+import './lib/chartSetup'
 import { useSSE } from './hooks/useSSE'
 import { SensorCard } from './components/SensorCard'
 import { StatusBadge } from './components/StatusBadge'
@@ -6,6 +7,7 @@ import { ServoControl } from './components/ServoControl'
 import { LedToggle } from './components/LedToggle'
 import { PiezoControl } from './components/PiezoControl'
 import { LcdControl } from './components/LcdControl'
+import { ChartSection } from './components/ChartSection'
 
 export default function App() {
   const state = useSSE('/events')
@@ -61,6 +63,11 @@ export default function App() {
               booleanLabels={['Pressed', 'Released']}
             />
           </div>
+        </section>
+
+        {/* Sensor History Charts */}
+        <section className="mb-8">
+          <ChartSection sensors={state.sensors} />
         </section>
 
         {/* Controls section */}
