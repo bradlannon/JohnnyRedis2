@@ -53,8 +53,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Scheduling
 
-- [x] **SCHED-01**: User can create scheduled actions (e.g., turn on LEDs at a specific time)
-- [x] **SCHED-02**: User can view, edit, and delete scheduled actions from dashboard
+- [ ] **SCHED-01**: User can create scheduled actions (e.g., turn on LEDs at a specific time)
+- [ ] **SCHED-02**: User can view, edit, and delete scheduled actions from dashboard
 
 ### Dashboard
 
@@ -134,8 +134,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CAM-02 | Phase 3 | Complete |
 | ALRT-01 | Phase 3 | Complete |
 | ALRT-02 | Phase 3 | Complete |
-| SCHED-01 | Phase 3 | Complete |
-| SCHED-02 | Phase 3 | Complete |
+| SCHED-01 | Phase 4 | Pending |
+| SCHED-02 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 24 total

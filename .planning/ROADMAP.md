@@ -15,6 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Monorepo scaffold, external services wired, SSE validated on Hostinger, Pi hub talking to Arduino over stable serial (completed 2026-03-13)
 - [x] **Phase 2: Core Dashboard** - Real-time actuator control, live sensor display, device status indicators, multi-session sync, responsive layout (completed 2026-03-13)
 - [x] **Phase 3: Data and Enrichment** - Historical sensor charts, 24/7 camera stream, motion alerts, scheduled actions (completed 2026-03-13)
+- [ ] **Phase 4: Gap Closure — Schema Fix and CORS** - Fix CommandPayload.value optionality bug and add CORS preflight handler for production
 
 ## Phase Details
 
@@ -66,6 +67,21 @@ Plans:
 - [ ] 03-02-PLAN.md — BI-quality chart dashboard: Chart.js time-series with synchronized crosshair, zoom/pan, real-time SSE updates, 1h/24h/7d window selector
 - [ ] 03-03-PLAN.md — Camera, alerts, and scheduler UI: HLS player with dual-feed tabs, motion alert notifications with per-sensor toggle, scheduler CRUD dashboard
 
+### Phase 4: Gap Closure — Schema Fix and CORS
+**Goal**: All milestone audit gaps are closed — scheduled actions work without a value field, and production CORS preflight passes for all API endpoints.
+**Depends on**: Phase 3
+**Requirements**: SCHED-01, SCHED-02
+**Gap Closure:** Closes gaps from v1.0 milestone audit
+**Success Criteria** (what must be TRUE):
+  1. Creating a schedule without a value field succeeds (HTTP 200, not 400)
+  2. Editing a schedule to remove the value field succeeds
+  3. CORS preflight (OPTIONS) returns correct headers for POST/PUT endpoints with application/json
+  4. All existing tests continue to pass
+**Plans**: 1 plan
+
+Plans:
+- [ ] 04-01: Schema fix and CORS — make CommandPayload.value optional, add CORS preflight handler
+
 ## Progress
 
 **Execution Order:**
@@ -76,3 +92,4 @@ Phases execute in numeric order: 1 → 2 → 3
 | 1. Foundation | 2/2 | Complete   | 2026-03-13 |
 | 2. Core Dashboard | 3/3 | Complete   | 2026-03-13 |
 | 3. Data and Enrichment | 3/3 | Complete   | 2026-03-13 |
+| 4. Gap Closure | 0/1 | Pending    | — |
