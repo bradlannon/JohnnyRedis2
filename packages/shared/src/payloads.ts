@@ -19,12 +19,7 @@ export const CommandPayload = z.object({
   value:  z.union([z.string(), z.number(), z.boolean()]).optional(),
 })
 
-export const HeartbeatPayload = z.object({
-  ts: z.number(),
-})
-
 // Inferred TypeScript types
 export type SensorPayload    = z.infer<typeof SensorPayload>
 export type StatusPayload    = z.infer<typeof StatusPayload>
 export type CommandPayload   = z.infer<typeof CommandPayload>
-export type HeartbeatPayload = z.infer<typeof HeartbeatPayload>

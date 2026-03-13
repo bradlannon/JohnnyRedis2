@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { SensorPayload, StatusPayload, CommandPayload, HeartbeatPayload } from './payloads.js'
+import { SensorPayload, StatusPayload, CommandPayload } from './payloads.js'
 import { ZodError } from 'zod'
 
 describe('SensorPayload', () => {
@@ -50,16 +50,5 @@ describe('CommandPayload', () => {
 
   it('throws ZodError when required fields are missing', () => {
     expect(() => CommandPayload.parse({ device: 'led' })).toThrow(ZodError)
-  })
-})
-
-describe('HeartbeatPayload', () => {
-  it('parses a valid heartbeat payload', () => {
-    const result = HeartbeatPayload.parse({ ts: 1234567890 })
-    expect(result).toEqual({ ts: 1234567890 })
-  })
-
-  it('throws ZodError when ts is missing', () => {
-    expect(() => HeartbeatPayload.parse({})).toThrow(ZodError)
   })
 })

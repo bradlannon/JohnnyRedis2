@@ -14,9 +14,6 @@ describe('TOPICS', () => {
     expect(TOPICS.status('hub')).toBe('home/status/hub')
   })
 
-  it('heartbeat() returns correct topic string', () => {
-    expect(TOPICS.heartbeat()).toBe('home/hub/heartbeat')
-  })
 })
 
 describe('RETAIN', () => {
@@ -32,7 +29,4 @@ describe('RETAIN', () => {
     expect(RETAIN.status).toBe(true)
   })
 
-  it('heartbeat retain is false', () => {
-    expect(RETAIN.heartbeat).toBe(false)
-  })
 })
