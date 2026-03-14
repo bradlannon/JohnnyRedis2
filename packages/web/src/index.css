@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+/* Nav links — match bradlannon.ca */
+.nav-link {
+  text-decoration: none;
+  color: #6B6B6B;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.active-nav {
+  color: #2A9D8F;
+}

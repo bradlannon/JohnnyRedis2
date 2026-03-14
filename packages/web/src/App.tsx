@@ -51,18 +51,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <h1 className="text-2xl font-bold text-gray-900">JohnnyRedis Dashboard</h1>
-            <div className="flex flex-wrap gap-2">
-              <StatusBadge label="Hub" online={hubOnline} />
-              <StatusBadge label="Nano" online={nanoOnline} />
-            </div>
-          </div>
+      {/* Header — matches bradlannon.ca nav */}
+      <nav className="sticky top-0 bg-white border-b-2 border-[#2A9D8F] z-[100] px-[60px] max-md:px-6 flex items-center justify-between h-16 font-[Nunito_Sans,sans-serif]">
+        <div className="flex gap-9">
+          <a href="https://bradlannon.ca/#portfolio" className="nav-link">Portfolio</a>
+          <a href="https://bradlannon.ca/apps.html" className="nav-link active-nav">Apps</a>
+          <a href="https://bradlannon.ca/av.html" className="nav-link">A/V</a>
+          <a href="https://bradlannon.ca/#about" className="nav-link">About me</a>
         </div>
-      </header>
+        <div className="flex items-center gap-2">
+          <StatusBadge label="Hub" online={hubOnline} />
+          <StatusBadge label="Nano" online={nanoOnline} />
+        </div>
+      </nav>
 
       <main className="max-w-7xl mx-auto px-4 py-6">
         {/* Sensors section */}
